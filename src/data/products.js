@@ -35,9 +35,19 @@ export const products = [
     stock: 30,
     image: "https://via.placeholder.com/300",
   },
+  {
+    id: "5",
+    title: "Estuches organizadores",
+    price: 12000,
+    category: "accesorios",
+    description: "Estuches para organizar herramientas y accesorios.",
+    stock: 20,
+    image: "https://via.placeholder.com/300",
+  },
 ];
 
 export const categories = [
   { id: "herramientas", label: "Herramientas" },
   { id: "seguridad", label: "Seguridad" },
+  { id: "accesorios", label: "Accesorios" },
 ];

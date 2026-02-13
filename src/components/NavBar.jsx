@@ -24,8 +24,8 @@ const NavBar = () => {
           </li>
 
           <li>
-            <Link to="/category/maquinas" className="hover:underline">
-              Máquinas
+            <Link to="/category/seguridad" className="hover:underline">
+              Seguridad
             </Link>
           </li>
 
