@@ -1,4 +1,4 @@
-import { products } from "../data/products";
+import { products } from "../../data/products";
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
@@ -19,3 +19,4 @@ export const getProductById = async (id) => {
 
   return product;
 };
+

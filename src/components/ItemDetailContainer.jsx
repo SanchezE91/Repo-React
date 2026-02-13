@@ -1,50 +1,44 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import { getProductById } from "../services/productService";
-import ItemCount from "./ItemCount";
+import { Link, useParams } from "react-router-dom";
+import { getProductById } from "./service/productService";
+import ItemDetail from "./ItemDetail";
 
 const ItemDetailContainer = () => {
-  const { itemId } = useParams();
-
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
+
+  const { itemId } = useParams();
 
   useEffect(() => {
     setLoading(true);
+    setNotFound(false);
 
     getProductById(itemId)
-      .then((data) => setProduct(data))
-      .catch((err) => console.error(err))
+      .then((res) => setProduct(res))
+      .catch(() => setNotFound(true))
       .finally(() => setLoading(false));
   }, [itemId]);
 
-  const handleAdd = (qty) => {
-    alert(`Agregaste ${qty} unidad(es) de ${product.title}`);
-  };
-
-  if (loading) return <p style={{ padding: 16 }}>Cargando detalle...</p>;
-
-  if (!product)
-    return (
-      <div style={{ padding: 16 }}>
-        <h2>Producto no encontrado</h2>
-        <Link to="/">Volver</Link>
-      </div>
-    );
-
   return (
-    <div style={{ padding: 16 }}>
-      <Link to="/">← Volver</Link>
+    <main className="min-h-screen bg-gray-100">
+      <div className="max-w-5xl mx-auto px-4 py-8">
+        <Link
+          to="/"
+          className="inline-block mb-6 text-sm text-blue-600 hover:underline"
+        >
+          ← Volver al catálogo
+        </Link>
 
-      <h1>{product.title}</h1>
-      <p>${product.price}</p>
-      <p>{product.description}</p>
-      <p>
-        Categoría: <b>{product.category}</b>
-      </p>
-
-      <ItemCount stock={product.stock} initial={1} onAdd={handleAdd} />
-    </div>
+        {loading ? (
+          <p className="text-gray-600">Cargando detalle...</p>
+        ) : notFound ? (
+          <p className="text-gray-600">Producto no encontrado.</p>
+        ) : (
+          <ItemDetail product={product} />
+        )}
+      </div>
+    </main>
   );
 };
 
