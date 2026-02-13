@@ -13,6 +13,7 @@ const ItemDetailContainer = () => {
   useEffect(() => {
     setLoading(true);
     setNotFound(false);
+    setProduct(null);
 
     getProductById(itemId)
       .then((res) => setProduct(res))
@@ -43,3 +44,4 @@ const ItemDetailContainer = () => {
 };
 
 export default ItemDetailContainer;
+

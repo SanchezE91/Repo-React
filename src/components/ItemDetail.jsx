@@ -1,6 +1,8 @@
 import ItemCount from "./ItemCount";
 
 const ItemDetail = ({ product }) => {
+  if (!product) return null;
+
   return (
     <div className="grid gap-8 md:grid-cols-2 bg-white rounded-2xl shadow-lg p-6">
       <div className="w-full h-80 bg-gray-100 rounded-2xl overflow-hidden">
