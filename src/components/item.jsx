@@ -9,6 +9,9 @@ const Item = ({ product }) => {
           alt={product.title}
           className="w-full h-full object-cover"
           loading="lazy"
+          onError={(e) => {
+            e.currentTarget.src = "/placeholder.jpg";
+          }}
         />
       </div>
 
@@ -31,3 +34,4 @@ const Item = ({ product }) => {
 };
 
 export default Item;
+
